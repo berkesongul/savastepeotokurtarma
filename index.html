@@ -1,11 +1,993 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Savaştepe Oto Kurtarma</title>
-  </head>
-  <body>
-    Merhaba Dünya!
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savaştepe Çekici - 7/24 Yol Yardımı ve Oto Kurtarma</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: #ff6b35;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b35;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #ff6b35 100%);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideDown 0.8s ease;
+        }
+        
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            color: #fff;
+            font-weight: 300;
+            animation: slideUp 0.8s ease 0.2s backwards;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease 0.4s backwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .btn {
+            padding: 16px 45px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #25a86e 0%, #2ecc8a 100%);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(37, 168, 110, 0.4);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h2 {
+            font-size: 42px;
+            margin-bottom: 50px;
+            text-align: center;
+            color: #1a1a1a;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35 0%, #ff8c5a 100%);
+            border-radius: 2px;
+        }
+        
+        .about {
+            background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.9;
+            font-size: 15px;
+        }
+        
+        .about-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+            transition: all 0.3s ease;
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(5deg) translateZ(20px);
+            box-shadow: 0 30px 80px rgba(255, 107, 53, 0.3);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 100%);
+            transition: top 0.3s ease;
+            z-index: 0;
+        }
+        
+        .service-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.15);
+            border-top-color: #ff6b35;
+        }
+        
+        .service-card:hover::before {
+            top: 0;
+        }
+        
+        .service-card h3 {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .service-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .gallery {
+            background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1) rotate(2deg);
+        }
+        
+        .gallery-item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: white;
+            padding: 25px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            height: 100%;
+        }
+        
+        .gallery-item:hover .gallery-item-caption {
+            transform: translateY(0);
+        }
+        
+        .faq {
+            background: linear-gradient(135deg, white 0%, #f9f9f9 100%);
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .faq-item:hover {
+            border-color: #ff6b35;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.1);
+        }
+        
+        .faq-question {
+            cursor: pointer;
+            color: #1a1a1a;
+            font-weight: 700;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover .faq-question {
+            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+            color: #ff6b35;
+        }
+        
+        .faq-question span:last-child {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+            color: #ff6b35;
+        }
+        
+        .faq-item.active .faq-question span:last-child {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            display: none;
+            color: #666;
+            padding: 20px;
+            border-top: 2px solid #eee;
+            background: white;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .contact {
+            background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+        
+        .contact-info h3 {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .contact-info h3:first-child {
+            margin-top: 0;
+        }
+        
+        .contact-info p {
+            color: #666;
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .contact-info a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #ff8c5a;
+            text-decoration: underline;
+        }
+        
+        .contact-form h3 {
+            color: #1a1a1a;
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 16px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+            background: #fff;
+        }
+        
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #999;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        footer p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        
+        footer a {
+            color: #ff6b35;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        footer a:hover {
+            color: #ff8c5a;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: linear-gradient(135deg, #25a86e 0%, #2ecc8a 100%);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(37, 168, 110, 0.3);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideIn 0.4s ease;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(400px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .notification-close {
+            cursor: pointer;
+            margin-left: 15px;
+            font-weight: bold;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .notification-close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .whatsapp-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25a86e 0%, #2ecc8a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(37, 168, 110, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            text-decoration: none;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .whatsapp-widget:hover {
+            transform: scale(1.15);
+            box-shadow: 0 12px 40px rgba(37, 168, 110, 0.5);
+            animation: none;
+        }
+        
+        .whatsapp-widget svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        
+        .whatsapp-tooltip {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background: #1a1a1a;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            right: 15px;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #1a1a1a;
+        }
+        
+        .whatsapp-widget:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: 85px;
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-widget {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+            }
+            
+            .whatsapp-widget svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+            nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification -->
+    <div class="notification">
+        <span>✓ Çekicimiz Aktiftir! 7/24 Hizmetinizdeyiz.</span>
+        <span class="notification-close" onclick="this.parentElement.style.display='none';">×</span>
+    </div>
+
+    <!-- WhatsApp Widget -->
+    <a href="https://wa.me/905459048318?text=Merhaba,%20Savaştepe%20çekici%20hizmeti%20almak%20istiyorum." target="_blank" class="whatsapp-widget">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a6.963 6.963 0 00-7.008 6.9.942.942 0 00-.197.58c0 3.873 3.158 7.02 7.03 7.02h.006a6.963 6.963 0 007.008-6.9 7.006 7.006 0 00-6.839-7.62zM12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z"/>
+        </svg>
+        <div class="whatsapp-tooltip">Bize Yazın!</div>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Savaştepe Çekici</div>
+            <nav>
+                <a href="#hakkimizda">Hakkımızda</a>
+                <a href="#hizmetlerimiz">Hizmetler</a>
+                <a href="#galeri">Galeri</a>
+                <a href="#sss">SSS</a>
+                <a href="#iletisim">İletişim</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Savaştepe Çekici - 7/24 Yol Yardımı ve Oto Kurtarma</h1>
+            <p>Acil Çekici Savaştepe ve Çevresi</p>
+            <p style="font-size: 16px; margin-top: 20px;">Bir tıkla bize ulaşın, anında yardım yolda!</p>
+            <div class="cta-buttons">
+                <a href="tel:+905459048318" class="btn btn-primary">Hemen Ara</a>
+                <a href="https://wa.me/905459048318?text=Merhaba,%20Savaştepe%20cekici%20hizmeti%20almak%20istiyorum." class="btn btn-secondary">WhatsApp'tan Yaz</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="hakkimizda" class="about">
+        <div class="container">
+            <h2>Hakkımızda - Çelik Oto Kurtarma</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Oğuzhan Çelik yönetimindeki Çelik Oto Kurtarma olarak, Savaştepe ve Balıkesir genelinde yılların deneyimiyle oto kurtarma ve yol yardım sektöründe güvenilir hizmetler sunmaktayız.</p>
+                    <p>Müşteri memnuniyetini en üst düzeyde tutarak, 7 gün 24 saat kesintisiz acil çekici Savaştepe hizmeti sağlıyoruz.</p>
+                    <p>Modern araç filomuz ve uzman ekibimizle, her türlü araç arızası, kaza veya yolda kalma durumunda hızlı ve etkili çözümler sunuyoruz.</p>
+                    <p>Güvenliğiniz bizim için önceliklidir. Bu nedenle, araçlarınızı titizlikle taşıyor, hasarsız bir şekilde istenilen noktaya ulaştırıyoruz.</p>
+                </div>
+                <img src="img/4.jpeg" alt="Çelik Oto Kurtarma" class="about-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="hizmetlerimiz" class="services">
+        <div class="container">
+            <h2>Savaştepe Çekici ve Yol Yardım Hizmetlerimiz</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Savaştepe Oto Kurtarma</h3>
+                    <p>Kaza veya arıza durumunda aracınızın güvenli bir şekilde taşınması için profesyonel Savaştepe oto kurtarıcı hizmeti sunuyoruz. En zorlu koşullarda bile yanınızdayız.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Savaştepe Yol Yardımı</h3>
+                    <p>Lastik değişimi, yakıt takviyesi, akü takviyesi gibi küçük arızalar için hızlı ve yerinde Savaştepe yol yardımı hizmetleri.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Acil Çekici Savaştepe</h3>
+                    <p>Aracınızın taşınması gereken her durumda, motosikletten ticari araçlara kadar her türden araca özel acil çekici Savaştepe hizmeti.</p>
+                </div>
+                <div class="service-card">
+                    <h3>7/24 Savaştepe Oto Kurtarma</h3>
+                    <p>Anahtarınızı aracınızda mı unuttunuz? Hasarsız kapı açma hizmetimizle kısa sürede sorununuzu çözüyoruz. 7/24 Savaştepe oto kurtarma ekibimizle her an yanınızdayız.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Balıkesir Savaştepe Çekici</h3>
+                    <p>Birden fazla aracın güvenli ve ekonomik bir şekilde taşınması gerektiğinde Balıkesir Savaştepe çekici çözümleri sunuyoruz.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Şehirlerarası Çekici Hizmeti</h3>
+                    <p>Aracınızın şehirlerarası taşınması gerektiğinde, sigortalı ve güvenli bir şekilde transfer hizmeti sağlıyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galeri" class="gallery">
+        <div class="container">
+            <h2>Galeri - Savaştepe Çekici Araçlarımız</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="img/1.jpeg" alt="Savaştepe Çekici Aracı 1">
+                    <div class="gallery-item-caption">Modern Çekici Filomuz</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/2.jpeg" alt="Savaştepe Oto Kurtarıcı 2">
+                    <div class="gallery-item-caption">Profesyonel Ekibimiz</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/3.jpeg" alt="7/24 Savaştepe Çekici Hizmeti">
+                    <div class="gallery-item-caption">7/24 Hizmet</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/4.jpeg" alt="Savaştepe Oto Kurtarma Aracı">
+                    <div class="gallery-item-caption">Güvenli Taşımacılık</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/1.jpeg" alt="Savaştepe Yol Yardım Müdahalesi">
+                    <div class="gallery-item-caption">Hızlı Müdahale</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/2.jpeg" alt="Balıkesir Savaştepe Çekici Ekibi">
+                    <div class="gallery-item-caption">Uzman Ekip</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="sss" class="faq">
+        <div class="container">
+            <h2>Sıkça Sorulan Sorular</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Savaştepe'de çekici hizmeti ne kadar sürede ulaşır?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Savaştepe merkezine ortalama 15-20 dakika içinde ulaşıyoruz. Acil durumlarda bu süre daha da kısalabilir.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Oto kurtarma hizmetleriniz 7/24 aktif mi?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Evet, 7 gün 24 saat kesintisiz hizmet veriyoruz. Hafta sonu ve bayram günlerinde de aynı kalitede hizmet alabilirsiniz.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Hangi tür araçlar için çekici hizmeti veriyorsunuz?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Motosikletten ticari araçlara kadar her türden araç için çekici hizmeti sunuyoruz. Özel ekipmanlar ile zor taşımacılıkları da gerçekleştirebiliriz.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Yol yardım hizmetleriniz nelerdir?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Lastik değişimi, yakıt takviyesi, akü takviyesi, motor yağı takviyesi ve diğer yaygın yol yardım hizmetlerini sağlıyoruz.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Fiyatlandırma nasıl yapılıyor?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Fiyatlandırma hizmet türü, mesafe ve araç türüne göre belirlenir. Detaylı bilgi için bize iletişime geçebilirsiniz.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Kaza durumunda araç kurtarma hizmeti veriyor musunuz?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Evet, kaza durumunda profesyonel araç kurtarma hizmetini hemen sağlıyoruz. Aracınız güvenli bir şekilde taşınır.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Savaştepe dışında da hizmet veriyor musunuz?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Evet, Balıkesir ve çevresinde hizmet veriyoruz. Şehirlerarası taşımacılık için de iletişime geçebilirsiniz.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Aracım arıza yaptı, ne yapmalıyım?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Bize hemen telefonla veya WhatsApp ile ulaşabilirsiniz. Operatörümüz konum bilgisini alarak çekicimizi yönlendirecektir.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Ödeme seçenekleriniz nelerdir?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Nakit, kredi kartı ve hesap transferi ile ödeme yapabilirsiniz. Kurumsal hizmetler için ödeme planları sunuyoruz.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Çelik Oto Kurtarma'ya nasıl ulaşabilirim?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Telefon: +90 545 904 83 18 | WhatsApp: +90 545 904 83 18 | E-posta: info@celikotokurtarma.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="iletisim" class="contact">
+        <div class="container">
+            <h2>İletişim - Çelik Oto Kurtarma Savaştepe</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Bize Ulaşın</h3>
+                    <p><strong>Telefon:</strong> <a href="tel:+905459048318">+90 545 904 83 18</a></p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/905459048318">+90 545 904 83 18</a></p>
+                    <p><strong>E-posta:</strong> <a href="mailto:info@celikotokurtarma.com">info@celikotokurtarma.com</a></p>
+                    <p><strong>Adres:</strong> Örnek Mah. Örnek Cad. No: 123, Savaştepe, Balıkesir / Türkiye</p>
+                    
+                    <h3>Çalışma Saatleri</h3>
+                    <p>7 Gün 24 Saat Kesintisiz Hizmet</p>
+                </div>
+                <div class="contact-form">
+                    <h3 style="color: #1a1a1a; margin-bottom: 20px;">Mesaj Gönderin</h3>
+                    <input type="text" placeholder="Adınız Soyadınız" required>
+                    <input type="email" placeholder="E-posta Adresiniz" required>
+                    <input type="tel" placeholder="Telefon Numaranız" required>
+                    <textarea placeholder="Mesajınız" required></textarea>
+                    <button class="btn btn-secondary" onclick="sendMessageWhatsApp()" style="width: 100%;">Mesajı WhatsApp'tan Gönder</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Çelik Oto Kurtarma. Tüm Hakları Saklıdır.</p>
+            <p style="margin-top: 15px;">
+                <a href="https://wa.me/905459048318" style="color: #ff6b35; text-decoration: none;">WhatsApp'tan Yaz</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+
+        function sendMessageWhatsApp() {
+            const form = document.querySelector('.contact-form');
+            const inputs = form.querySelectorAll('input, textarea');
+            
+            const name = inputs[0].value;
+            const email = inputs[1].value;
+            const phone = inputs[2].value;
+            const message = inputs[3].value;
+
+            if (name && email && phone && message) {
+                const whatsappMessage = `Merhaba Çelik Oto Kurtarma,%0AAd Soyad: ${name}%0AE-posta: ${email}%0ATelefon: ${phone}%0AMesaj: ${message}`;
+                window.open(`https://wa.me/905459048318?text=${whatsappMessage}`);
+            } else {
+                alert('Lütfen tüm alanları doldurunuz.');
+            }
+        }
+    </script>
+</body>
 </html>
