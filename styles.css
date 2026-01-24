@@ -624,12 +624,10 @@
             animation: none;
         }
         
-        .whatsapp-widget svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-        
+        .whatsapp-widget i {
+            font-size: 32px;
+            color: white;
+        }        
         .whatsapp-tooltip {
             position: absolute;
             bottom: 80px;
@@ -673,9 +671,8 @@
                 height: 56px;
             }
             
-            .whatsapp-widget svg {
-                width: 28px;
-                height: 28px;
+            .whatsapp-widget i {
+                font-size: 28px;
             }
         
             nav {
